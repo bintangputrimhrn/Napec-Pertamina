@@ -1,0 +1,2 @@
+NAPEC Feedback - MySQL only, no admin page, no application export.
+Data is stored in MySQL and exported directly through phpMyAdmin/MySQL tools.

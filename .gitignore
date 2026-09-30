@@ -1,0 +1,14 @@
+/vendor/
+/node_modules/
+/public/build/
+/public/hot
+/storage/*.key
+/storage/app/google/*.json
+.env
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-debug.log
+/.idea
+/.vscode

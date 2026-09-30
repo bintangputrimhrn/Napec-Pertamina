@@ -1,0 +1,75 @@
+{
+  "$schema": "https://getcomposer.org/schema.json",
+  "name": "napec/feedback-form",
+  "type": "project",
+  "description": "Laravel 13 NAPEC visitor feedback form with MySQL storage and CSV/XLSX export.",
+  "keywords": ["laravel", "feedback", "napec", "mysql", "csv", "excel"],
+  "license": "MIT",
+  "require": {
+    "php": "^8.3",
+    "laravel/framework": "^13.0",
+    "laravel/tinker": "^3.0"
+  },
+  "require-dev": {
+    "fakerphp/faker": "^1.24",
+    "laravel/pail": "^1.2",
+    "laravel/pint": "^1.24",
+    "mockery/mockery": "^1.6",
+    "nunomaduro/collision": "^8.9",
+    "phpunit/phpunit": "^12.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Database\\Factories\\": "database/factories/",
+      "Database\\Seeders\\": "database/seeders/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "setup": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+      "@php artisan key:generate",
+      "@php artisan migrate",
+      "@php artisan optimize:clear"
+    ],
+    "dev": [
+      "Composer\\Config::disableProcessTimeout",
+      "php artisan serve"
+    ],
+    "test": [
+      "@php artisan config:clear",
+      "@php artisan test"
+    ],
+    "post-autoload-dump": [
+      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+      "@php artisan package:discover --ansi"
+    ],
+    "post-update-cmd": [
+      "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+    ],
+    "post-root-package-install": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "dont-discover": []
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true,
+      "php-http/discovery": true
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}
