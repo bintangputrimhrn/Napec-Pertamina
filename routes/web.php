@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\MediaRegistrationController;
+use App\Http\Controllers\CsrStemEdufunRegistrationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,3 +41,23 @@ Route::get('/media', [MediaRegistrationController::class, 'create'])
 
 Route::post('/media', [MediaRegistrationController::class, 'store'])
     ->name('media.store');
+
+/*
+|--------------------------------------------------------------------------
+| CSR STEM EDUFUN
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/edufun', [CsrStemEdufunRegistrationController::class, 'create'])
+    ->name('csr-stem-edufun.create');
+
+Route::post('/edufun', [CsrStemEdufunRegistrationController::class, 'store'])
+    ->name('csr-stem-edufun.store');
+
+Route::get('/edufun/success', function (\Illuminate\Http\Request $request) {
+    if (!$request->session()->pull('edufun_registration_success')) {
+        return redirect()->route('csr-stem-edufun.create');
+    }
+
+    return view('csr-stem-edufun.success');
+})->name('csr-stem-edufun.success');

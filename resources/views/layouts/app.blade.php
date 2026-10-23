@@ -18,8 +18,18 @@
             font-size: 16px;
         }
         .napec-page { min-height: 100vh; }
-        .brand-wrap { text-align: center; }
-        .brand-logo { width: min(850px, 78vw); height: auto; display: inline-block; }
+        .brand-wrap {
+            text-align: center;
+            padding: 25px 20px;
+        box-sizing: border-box;
+        }
+        .brand-logo {
+            width: min(650px, 78vw);
+            max-height: 220px;
+            height: auto;
+            object-fit: contain;
+            display: inline-block;
+        }
         .brand-placeholder {
             width: min(560px, 78vw);
             height: 125px;
@@ -94,19 +104,37 @@
     </style>
 </head>
 <body>
+
+
 @php($useOfficialBranding = filter_var(env('USE_OFFICIAL_BRANDING', false), FILTER_VALIDATE_BOOL))
+
 <div class="napec-page">
-    @if($useOfficialBranding)
+    @if(request()->is('edufun') || request()->is('edufun/success'))
+        <div class="brand-wrap edufun-brand">
+            <img
+                class="brand-logo"
+                src="{{ asset('assets/PMEP-logo.png') }}"
+                alt="Edufun"
+            >
+        </div>
+    @elseif($useOfficialBranding)
         <div class="brand-wrap">
-            <img class="brand-logo" src="{{ asset('assets/pertamina-logo.png') }}" alt="Pertamina">
+            <img
+                class="brand-logo"
+                src="{{ asset('assets/pertamina-logo.png') }}"
+                alt="Pertamina"
+            >
         </div>
     @else
         <div class="brand-wrap">
             <div class="brand-placeholder" aria-label="NAPEC">NAPEC</div>
         </div>
     @endif
+    
     @yield('content')
 </div>
+
 @stack('scripts')
+
 </body>
 </html>
