@@ -26,9 +26,7 @@
         color: var(--text-color);
     }
 
-    /* =========================================
-       LANGUAGE SWITCHER
-    ========================================== */
+    /* LANGUAGE SWITCHER */
 
     .language-switcher {
         display: flex;
@@ -72,9 +70,7 @@
     }
 
 
-    /* =========================================
-       TITLE
-    ========================================== */
+    /* TITLE */
 
     .feedback-title {
         text-align: center;
@@ -96,9 +92,7 @@
     }
 
 
-    /* =========================================
-       QUESTION
-    ========================================== */
+    /* QUESTION */
 
     .question {
         margin-bottom: 25px;
@@ -118,9 +112,7 @@
     }
 
 
-    /* =========================================
-       INPUT
-    ========================================== */
+    /* INPUT */
 
     .form-control {
         width: 100%;
@@ -146,9 +138,7 @@
     }
 
 
-    /* =========================================
-       RADIO OPTIONS
-    ========================================== */
+    /* RADIO OPTIONS */
 
     .option-list {
         display: grid;
@@ -179,9 +169,7 @@
     }
 
 
-    /* =========================================
-       OTHER INPUT
-    ========================================== */
+    /* OTHER INPUT */
 
     .other-input {
         display: none;
@@ -193,9 +181,7 @@
     }
 
 
-    /* =========================================
-       STAR RATING
-    ========================================== */
+    /* STAR RATING */
 
     .rating-wrap {
         margin-top: 3px;
@@ -239,9 +225,7 @@
     }
 
 
-    /* =========================================
-       ERROR
-    ========================================== */
+    /* ERROR */
 
     .field-error {
         display: none;
@@ -265,9 +249,7 @@
     }
 
 
-    /* =========================================
-       SUBMIT
-    ========================================== */
+    /* SUBMIT */
 
     .submit-wrap {
         margin-top: 35px;
@@ -295,9 +277,7 @@
     }
 
 
-    /* =========================================
-       SERVER ERROR
-    ========================================== */
+    /* SERVER ERROR */
 
     .server-error {
         background: #fde8e8;
@@ -310,9 +290,7 @@
     }
 
 
-    /* =========================================
-       MOBILE
-    ========================================== */
+    /* MOBILE */
 
     @media (max-width: 700px) {
 
@@ -346,9 +324,6 @@
 
 <div class="feedback-page">
 
-    {{-- =========================================
-         LANGUAGE SWITCHER
-    ========================================== --}}
 
     <div class="language-switcher">
 
@@ -374,10 +349,6 @@
     </div>
 
 
-    {{-- =========================================
-         TITLE
-    ========================================== --}}
-
     <div class="feedback-title">
 
         <h1>
@@ -391,20 +362,12 @@
     </div>
 
 
-    {{-- =========================================
-         SERVER ERROR
-    ========================================== --}}
-
     @if(session('form_error'))
         <div class="server-error">
             {{ session('form_error') }}
         </div>
     @endif
 
-
-    {{-- =========================================
-         FORM
-    ========================================== --}}
 
     <form
         method="POST"
@@ -429,9 +392,6 @@
         
         >
 
-        {{-- =====================================
-             1. NAME
-        ====================================== --}}
 
         <div class="question" data-question="name">
 
@@ -464,10 +424,6 @@
         </div>
 
 
-        {{-- =====================================
-             2. COMPANY NAME
-        ====================================== --}}
-
         <div class="question" data-question="company_name">
 
             <label
@@ -497,10 +453,6 @@
 
         </div>
 
-
-        {{-- =====================================
-             3. EMAIL
-        ====================================== --}}
 
         <div class="question" data-question="email">
 
@@ -533,10 +485,6 @@
         </div>
 
 
-        {{-- =====================================
-             4. JOB TITLE
-        ====================================== --}}
-
         <div class="question" data-question="job_title">
 
             <label
@@ -566,10 +514,6 @@
 
         </div>
 
-
-        {{-- =====================================
-             5. HOW DID YOU HEAR ABOUT US?
-        ====================================== --}}
 
         <div class="question" data-question="heard_from">
 
@@ -658,10 +602,6 @@
         </div>
 
 
-        {{-- =====================================
-             6. BOOTH RATING
-        ====================================== --}}
-
         <div class="question" data-question="booth_rating">
 
             <label
@@ -737,10 +677,6 @@
         </div>
 
 
-        {{-- =====================================
-             7. BOOTH LAYOUT
-        ====================================== --}}
-
         <div class="question" data-question="booth_design">
 
             <label
@@ -804,10 +740,6 @@
 
         </div>
 
-
-        {{-- =====================================
-             8. ATTENTION ASPECT
-        ====================================== --}}
 
         <div class="question" data-question="attention_aspect">
 
@@ -911,10 +843,6 @@
         </div>
 
 
-        {{-- =====================================
-             9. REPRESENTATIVES
-        ====================================== --}}
-
         <div class="question" data-question="representative_rating">
 
             <label
@@ -979,10 +907,6 @@
         </div>
 
 
-        {{-- =====================================
-             10. LEARNED SOMETHING
-        ====================================== --}}
-
         <div class="question" data-question="learned_something">
 
             <label
@@ -1032,10 +956,6 @@
         </div>
 
 
-        {{-- =====================================
-             11. IMPROVEMENTS
-        ====================================== --}}
-
         <div class="question" data-question="improvements">
 
             <label
@@ -1059,10 +979,6 @@
         </div>
 
 
-        {{-- =====================================
-             12. INTERESTED PRODUCTS
-        ====================================== --}}
-
         <div class="question" data-question="interested_products">
 
             <label
@@ -1085,10 +1001,6 @@
 
         </div>
 
-
-        {{-- =====================================
-             13. ATTENDED PRESENTATION
-        ====================================== --}}
 
         <div class="question" data-question="attended_presentation">
 
@@ -1163,10 +1075,6 @@
 
         </div>
 
-
-        {{-- =====================================
-             14. OVERALL SATISFACTION
-        ====================================== --}}
 
         <div class="question" data-question="overall_satisfaction">
 
@@ -1262,10 +1170,6 @@
         </div>
 
 
-        {{-- =====================================
-             15. RECOMMENDATION
-        ====================================== --}}
-
         <div class="question" data-question="recommendation">
 
             <label
@@ -1337,10 +1241,6 @@
         </div>
 
 
-        {{-- =====================================
-             SUBMIT
-        ====================================== --}}
-
         <div class="submit-wrap">
 
             <button
@@ -1376,10 +1276,6 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('languageInput').value || 'fr';
 
 
-    /* =========================================
-       TRANSLATIONS
-    ========================================== */
-
     const translations = {
 
         en: {
@@ -1410,10 +1306,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     };
 
-
-    /* =========================================
-       CHANGE LANGUAGE
-    ========================================== */
 
     function setLanguage(language) {
 
@@ -1463,11 +1355,6 @@ document.addEventListener('DOMContentLoaded', function () {
             translation.rating;
 
 
-        /*
-         * Semua element yang mempunyai
-         * data-en dan data-fr
-         */
-
         document
             .querySelectorAll('[data-en][data-fr]')
             .forEach(function (element) {
@@ -1482,10 +1369,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
 
-        /*
-         * Presentation feedback help
-         */
-
         const presentationHelp =
             document.getElementById(
                 'presentationFeedbackHelp'
@@ -1497,13 +1380,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 presentationHelp.dataset[language];
 
         }
-
-
-        /*
-         * Jangan hapus isi input yang
-         * sudah diketik user.
-         */
-
     }
 
 
@@ -1526,10 +1402,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     );
 
-
-    /* =========================================
-       OTHER - HEARD FROM
-    ========================================== */
 
     const heardFromRadios =
         document.querySelectorAll(
@@ -1584,10 +1456,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    /* =========================================
-       OTHER - ATTENTION ASPECT
-    ========================================== */
-
     const attentionRadios =
         document.querySelectorAll(
             'input[name="attention_aspect"]'
@@ -1640,10 +1508,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
-
-    /* =========================================
-       PRESENTATION YES / NO
-    ========================================== */
 
     const presentationRadios =
         document.querySelectorAll(
@@ -1709,10 +1573,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    /* =========================================
-       RECOMMENDATION ADDITIONAL COMMENTS
-    ========================================== */
-
     const recommendationRadios =
         document.querySelectorAll(
             'input[name="recommendation"]'
@@ -1768,10 +1628,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    /* =========================================
-       CLEAR ERROR
-    ========================================== */
-
     function clearFieldError(name) {
 
         const error =
@@ -1814,10 +1670,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
-
-    /* =========================================
-       SHOW ERROR
-    ========================================== */
 
     function showFieldError(name, message) {
 
@@ -1862,10 +1714,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    /* =========================================
-       FORM VALIDATION
-    ========================================== */
-
     form.addEventListener(
         'submit',
         function (event) {
@@ -1874,11 +1722,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const t =
                 translations[currentLanguage];
-
-
-            /*
-             * Clear previous errors
-             */
 
             document
                 .querySelectorAll('.field-error')
@@ -1900,11 +1743,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     );
 
                 });
-
-
-            /*
-             * Text fields
-             */
 
             const requiredTextFields = [
                 'name',
@@ -1939,11 +1777,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             );
 
-
-            /*
-             * Email validation
-             */
-
             const email =
                 document.getElementById('email');
 
@@ -1961,11 +1794,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             }
 
-
-            /*
-             * Radio groups
-             */
-
             const radioGroups = [
                 'heard_from',
                 'booth_rating',
@@ -1977,7 +1805,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 'overall_satisfaction',
                 'recommendation'
             ];
-
 
             radioGroups.forEach(
                 function (name) {
@@ -2003,11 +1830,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             );
 
-
-            /*
-             * Heard from - Other
-             */
-
             const heardFrom =
                 document.querySelector(
                     'input[name="heard_from"]:checked'
@@ -2027,11 +1849,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 valid = false;
 
             }
-
-
-            /*
-             * Attention aspect - Other
-             */
 
             const attention =
                 document.querySelector(
@@ -2054,10 +1871,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
 
-            /*
-             * Presentation feedback
-             */
-
             const attended =
                 document.querySelector(
                     'input[name="attended_presentation"]:checked'
@@ -2079,11 +1892,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             }
 
-
-            /*
-             * Additional comments
-             */
-
             const recommendation =
                 document.querySelector(
                     'input[name="recommendation"]:checked'
@@ -2104,12 +1912,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 valid = false;
 
             }
-
-
-            /*
-             * Jika tidak valid,
-             * jangan submit
-             */
 
             if (!valid) {
 
@@ -2133,21 +1935,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             }
 
-
-            /*
-             * Kalau valid, tombol disabled
-             * supaya tidak double submit
-             */
-
             submitButton.disabled = true;
 
         }
     );
-
-
-    /* =========================================
-       INITIAL STATE
-    ========================================== */
 
     updateHeardFromOther();
 

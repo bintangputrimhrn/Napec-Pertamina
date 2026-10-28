@@ -13,12 +13,6 @@ class StoreFeedbackRequest extends FormRequest
     }
 
 
-    /**
-     * Set application language before validation.
-     *
-     * Karena bahasa sekarang berasal dari hidden input,
-     * bukan dari /en atau /fr.
-     */
     protected function prepareForValidation(): void
     {
         $language = $this->input(

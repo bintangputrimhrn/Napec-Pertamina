@@ -13,15 +13,8 @@ use Throwable;
 
 class FeedbackController extends Controller
 {
-    /**
-     * Display the visitor feedback form.
-     */
     public function index(Request $request): View
     {
-        /*
-         * Satu token untuk halaman /form.
-         * Bahasa tidak lagi ditentukan dari URL.
-         */
         $token = bin2hex(random_bytes(32));
 
         $request->session()->put(
@@ -29,11 +22,6 @@ class FeedbackController extends Controller
             $token
         );
 
-        /*
-         * Bahasa awal selalu English.
-         * User bisa menggantinya ke Français
-         * melalui tombol di halaman.
-         */
         return view('feedback.form', [
             'language' => old('language', 'fr'),
             'formToken' => $token,
@@ -41,38 +29,21 @@ class FeedbackController extends Controller
     }
 
 
-    /**
-     * Store visitor feedback.
-     */
     public function store(
         StoreFeedbackRequest $request
     ): RedirectResponse {
 
-        /*
-         * Bahasa diambil dari hidden input:
-         *
-         * language = en
-         * atau
-         * language = fr
-         */
         $language = $request->input(
             'language',
             'en'
         );
 
-        /*
-         * Pastikan hanya menerima
-         * English atau Français.
-         */
         abort_unless(
             in_array($language, ['en', 'fr'], true),
             422
         );
 
 
-        /*
-         * Cek token form.
-         */
         $expectedToken =
             $request->session()->get(
                 'feedback_form_token'
@@ -93,38 +64,22 @@ class FeedbackController extends Controller
         }
 
 
-        /*
-         * Token hanya boleh dipakai sekali.
-         */
         $request->session()->forget(
             'feedback_form_token'
         );
 
 
-        /*
-         * Ambil data yang sudah divalidasi.
-         */
         $data = $request->validated();
 
 
-        /*
-         * Token tidak disimpan ke database.
-         */
         unset(
             $data['submission_token']
         );
 
 
-        /*
-         * Simpan bahasa yang dipilih user.
-         */
         $data['language'] = $language;
 
 
-        /*
-         * Buat fingerprint agar submit yang sama
-         * tidak tersimpan berkali-kali secara bersamaan.
-         */
         $fingerprint = hash(
             'sha256',
             $request->session()->getId()
@@ -154,9 +109,6 @@ class FeedbackController extends Controller
             );
 
 
-            /*
-             * Simpan bahasa untuk halaman success.
-             */
             $request->session()->put(
                 'feedback_language',
                 $language
@@ -195,9 +147,6 @@ class FeedbackController extends Controller
     }
 
 
-    /**
-     * Display success page.
-     */
     public function success(
         Request $request
     ): View {
