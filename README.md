@@ -1,47 +1,56 @@
-# NAPEC Feedback — Laravel 13 + MySQL
+# NAPEC Feedback
 
-Versi ini **hanya menggunakan MySQL sebagai penyimpanan data**. Tidak ada Google API, Google Sheets, halaman admin, atau fitur export dari website.
+Aplikasi feedback pengunjung berbasis **Laravel 13** dengan **MySQL** sebagai database untuk menyimpan data feedback.
 
-Data feedback disimpan di tabel:
+## Fitur
 
-```text
-feedback_submissions
+- Landing page dengan pilihan bahasa English dan French.
+- Form feedback dalam bahasa English dan French.
+- Validasi input menggunakan Laravel.
+- CSRF protection untuk keamanan form.
+- Token form untuk membantu mencegah pengiriman ganda.
+- Rate limiting pada pengiriman feedback.
+- Penyimpanan data feedback ke database MySQL.
+- Halaman sukses setelah feedback berhasil dikirim.
+
+## Teknologi
+
+- **Backend:** Laravel 13
+- **Bahasa pemrograman:** PHP 8.3+
+- **Database:** MySQL / MariaDB yang kompatibel
+- **Database management:** phpMyAdmin atau MySQL Workbench
+
+## Persyaratan Sistem
+
+Pastikan perangkat sudah memiliki:
+
+- PHP 8.3 atau versi yang kompatibel dengan Laravel 13.
+- Composer.
+- MySQL atau MariaDB yang kompatibel.
+- Extension PHP `pdo_mysql`, `mbstring`, `openssl`, `fileinfo`, dan `xml`.
+
+## Instalasi
+
+### 1. Clone repository
+
+```bash
+git clone https://github.com/bintangputrimhrn/Napec-Pertamina.git
+cd Napec-Pertamina
 ```
 
-Untuk mengunduh/cadangkan data, gunakan langsung tool database seperti **phpMyAdmin** atau **MySQL Workbench**. Dengan begitu website tetap sederhana dan database menjadi sumber data utama.
+Jika repository sudah tersedia di komputer, langsung buka folder proyek melalui terminal.
 
-## Fitur website
+### 2. Install dependency
 
-- Landing page pilihan bahasa: English / France
-- Form feedback English dan French
-- Validasi Laravel
-- CSRF protection
-- Token per form untuk mencegah double submit
-- Rate limiting submit feedback
-- Penyimpanan langsung ke MySQL
-- Halaman sukses setelah submit
-- Tidak ada halaman admin
-- Tidak ada Google API
-- Tidak ada Google Sheets
-- Tidak ada dependency Excel/PhpSpreadsheet
-
-## 1. Persyaratan
-
-- PHP 8.3+
-- Composer
-- MySQL 8+ / MariaDB yang kompatibel
-- Extension PHP `pdo_mysql`, `mbstring`, `openssl`, `fileinfo`, `xml`
-
-## 2. Install
-
-Ekstrak ZIP lalu:
-
-```powershell
-cd napec-feedback-mysql-final
+```bash
 composer install
 ```
 
-Buat `.env`:
+### 3. Konfigurasi environment
+
+Buat file `.env` berdasarkan `.env.example`:
+
+**PowerShell:**
 
 ```powershell
 Copy-Item .env.example .env
@@ -49,19 +58,21 @@ Copy-Item .env.example .env
 
 Generate application key:
 
-```powershell
+```bash
 php artisan key:generate
 ```
 
-## 3. Database MySQL
+### 4. Buat database MySQL
 
-Buat database:
+Buat database dengan nama `napec_feedback` melalui phpMyAdmin atau MySQL:
 
 ```sql
-CREATE DATABASE napec_feedback CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE napec_feedback
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
 ```
 
-Isi `.env`:
+Sesuaikan konfigurasi database pada file `.env`:
 
 ```env
 DB_CONNECTION=mysql
@@ -72,106 +83,87 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-Kemudian jalankan:
+Sesuaikan `DB_USERNAME` dan `DB_PASSWORD` dengan konfigurasi MySQL di perangkat masing-masing.
 
-```powershell
+### 5. Jalankan migration
+
+```bash
 php artisan migrate
 ```
 
-Tabel feedback yang dibuat:
+Perintah ini membuat tabel database berdasarkan migration yang tersedia di proyek.
+
+Data feedback disimpan pada tabel:
 
 ```text
 feedback_submissions
 ```
 
-## 4. Jalankan website
+### 6. Jalankan aplikasi
 
-```powershell
+```bash
 php artisan serve
 ```
 
-Buka:
+Buka alamat berikut di browser:
 
-```text
 http://127.0.0.1:8000
-```
 
-Pengunjung hanya berinteraksi dengan halaman form. Tidak ada halaman admin.
+## Melihat Data Feedback
 
-## 5. Melihat data melalui MySQL / phpMyAdmin
+Data feedback dapat dilihat melalui phpMyAdmin atau MySQL Workbench.
 
 Jika menggunakan XAMPP:
 
-1. Buka XAMPP.
-2. Start **Apache** dan **MySQL**.
-3. Buka phpMyAdmin.
-4. Pilih database `napec_feedback`.
-5. Pilih tabel `feedback_submissions`.
-6. Data seluruh pengunjung akan terlihat di sana.
+1. Jalankan MySQL melalui XAMPP Control Panel.
+2. Buka phpMyAdmin.
+3. Pilih database `napec_feedback`.
+4. Buka tabel `feedback_submissions`.
+5. Lihat data feedback yang telah dikirim oleh pengunjung.
 
-## 6. Download / export data langsung dari database
+## Export dan Backup Database
 
-### Export seluruh database sebagai SQL
+Data dapat diunduh langsung melalui phpMyAdmin.
 
-Di phpMyAdmin:
+### Export database sebagai SQL
 
-```text
-napec_feedback
-→ Export
-→ Quick
-→ SQL
-→ Export
-```
+1. Pilih database `napec_feedback`.
+2. Buka menu **Export**.
+3. Pilih format SQL.
+4. Jalankan export untuk mengunduh file backup.
 
-File `.sql` tersebut merupakan backup database dan dapat di-import kembali ke MySQL.
+File SQL dapat digunakan untuk memulihkan database melalui proses import.
 
 ### Export data feedback sebagai CSV
 
-Di phpMyAdmin:
+1. Pilih tabel `feedback_submissions`.
+2. Buka menu **Export**.
+3. Pilih format CSV.
+4. Jalankan export.
 
-```text
-napec_feedback
-→ feedback_submissions
-→ Export
-→ pilih format CSV
-→ Export
-```
+File CSV dapat dibuka menggunakan Microsoft Excel atau aplikasi spreadsheet lainnya.
 
-File CSV dapat dibuka menggunakan Microsoft Excel.
+## Struktur Data
 
-Jadi website **tidak memiliki tombol download/export**. Pengelolaan dan pengunduhan data dilakukan langsung dari MySQL/phpMyAdmin.
+Tabel `feedback_submissions` digunakan untuk menyimpan data feedback, meliputi:
 
-## 7. Struktur data
+- Informasi pengunjung: `name`, `company_name`, `email`, dan `job_title`.
+- Bahasa form: `language`.
+- Sumber informasi: `heard_from` dan `heard_from_other`.
+- Penilaian booth dan perwakilan: `booth_rating`, `booth_design`, `attention_aspect`, `attention_aspect_other`, dan `representative_rating`.
+- Tanggapan pengunjung: `learned_something`, `improvements`, `interested_products`, `presentation_feedback`, `overall_satisfaction`, `recommendation`, dan `additional_comments`.
+- Timestamp: `created_at` dan `updated_at`.
 
-Tabel `feedback_submissions` menyimpan:
+## Reset Database untuk Development
 
-- language
-- name
-- company_name
-- email
-- job_title
-- heard_from
-- heard_from_other
-- booth_rating
-- booth_design
-- attention_aspect
-- attention_aspect_other
-- representative_rating
-- learned_something
-- improvements
-- interested_products
-- presentation_feedback
-- overall_satisfaction
-- recommendation
-- additional_comments
-- created_at
-- updated_at
+Untuk menghapus seluruh data pada tabel dan menjalankan ulang semua migration:
 
-## 8. Reset database saat development
-
-Untuk menghapus seluruh data dan membuat tabel ulang:
-
-```powershell
+```bash
 php artisan migrate:fresh
 ```
 
+**Perhatian:** Perintah tersebut menghapus tabel beserta seluruh data yang tersimpan di database. Gunakan hanya jika memang ingin mengatur ulang database development.
+
+## Repository
+
+GitHub: https://github.com/bintangputrimhrn/Napec-Pertamina
